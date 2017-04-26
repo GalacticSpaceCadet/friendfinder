@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Finder</title>
+    <!-- Adding the link to bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Survey Questions</h2>
+            <hr>
+            <h3>About You</h3>
+           
+           
+                    <label for> Name (Required) </label>
+                    <input type="text" id="name" class="form-control" required>
+              
+             
+                    <label for> Link To Photo Image (Required) </label>
+                    <input type="text" class="form-control" id="photoURL" required>
+
+                <hr>
+                <h2> Question 1 </h2>
+                <h3> How likely is your father to head about this?</h3>
+                
+               
+                <select class="form-control chosen" id="a1" style="width: 250px;">
+                    <option value ="1">1(very unlikely)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(He will definitly hear about this!)</option>
+                </select>
+
+                <h2> Question 2 </h2>
+                <h3> Are you a fan of reptiles?</h3>
+                <select class="form-control chosen" id="a2" style="width: 250px;">
+                    <option value ="1">1(very unlikely)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(Go, Slytherin!)</option>
+                </select>
+               
+                <h2> Question 3 </h2>
+                <h3> How do you feel about gardening? </h3>
+                <select class="form-control chosen" id="a3" style="width: 250px;">
+                    <option value ="1">1(Dislike)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(Love!)</option>
+                </select>
+                
+                <h2> Question 4 </h2>
+                <h3> I am often found in the library on my freetime? </h3>
+                <select class="form-control chosen" id="a4" style="width: 250px;">
+                    <option value ="1">1(very unlikely)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(I am already there.)</option>
+                </select>
+                
+                <h2> Question 5 </h2>
+                <h3> I like awesome scars? </h3>
+                <select class="form-control chosen" id="a5" style="width: 250px;">
+                    <option value ="1">1(No)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(I have one!)</option>
+                </select>
+                
+                <h2> Question 6 </h2>
+                <h3> People often sigh when I raise my hand in class? </h3>
+                <select class="form-control chosen" id="a6" style="width: 250px;">
+                    <option value ="1">1(Never)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(Perhaps they should study more)</option>
+                </select>
+                
+                <h2> Question 7 </h2>
+                <h3> How punchable do you find Draco's face? </h3>
+                <select class="form-control chosen" id="a7" style="width: 250px;">
+                    <option value ="1">1(My Father...)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(I have punched it before)</option>
+                </select>
+                
+                <h2> Question 8 </h2>
+                <h3> I like sports? </h3>
+                <select class="form-control chosen" id="a8" style="width: 250px;">
+                    <option value ="1">1(I would rather read)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(I am a seeker)</option>
+                </select>
+                
+                <h2>  </h2>
+                <h3> I am often up to no good? </h3>
+                <select class="form-control chosen" id="a9" style="width: 250px;">
+                    <option value ="1">1(Never)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(Always.)</option>
+                </select>
+                
+                <h2> Question 10 </h2>
+                <h3> I am often sent to the Headmasters office? </h3>
+                <select class="form-control chosen" id="a10" style="width: 250px;">
+                    <option value ="1">1(Strongly Disagree)</option>
+                    <option value ="2">2 </option>
+                    <option value ="3">3</option>
+                    <option value ="4">4</option>
+                    <option value ="5">5(We are on a first name basis.)</option>
+                </select>
+            <br>
+            	<button type="submit" class="btn btn-primary btn-block" id="submit">Submit</button>
+            </form>
+            <hr>
+        </div>
+        <div>
+            <p>
+                <a href="/api/friends"> API Friends List</a> |
+                <a href=""> GitHub Repo</a>
+            </p>
+        </div>
+
+</body>
+<script type="text/javascript">
+compareFriendsQuery();
+ $(".submit").on("click", function(event){
+      event.preventDefault();
+
+      // Here we grab the form elements
+      var seekingFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photoURL").val().trim(),
+        scores: [$("#a1").val(), $("#a2").val(), $("#a3").val(), $("#a4").val(), $("#a5").val(), $("#a6").val(), $("#a7").val(), $("#a8").val(), $("#a9").val(),$("#a2").val()]
+      };
+
+      console.log(seekingFriend);
+    });
+
+function compareFriendsQuery(){
+    var currentURL = window.location.origin;
+
+    //Now we create an ajax call to get data
+      $.ajax({ url: currentURL + "/api/friends", method: "GET" })
+      .done(function(friendsData) {
+
+        // Here we are logging the URL so we have access to it for troubleshooting
+        console.log("------------------------------------");
+        console.log("URL: " + currentURL + "/api/friends");
+        console.log("------------------------------------");
+
+        // Here we then log the NYTData to console, where it will show up as an object.
+        console.log(friendsData);
+        console.log("------------------------------------");
+    });
+    }; 
+
+
+
+
+</script>
+
+</html>
